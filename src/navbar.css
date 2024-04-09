@@ -1,0 +1,29 @@
+.navbar {
+    background-color: transparent;
+    position: relative;
+}
+  
+.navbar-brand {
+    padding: 0;
+    position: absolute;
+    left: 20px;
+    top: 80%;
+    transform: translateY(-50%);
+}
+  
+.logo-img {
+    width: 200px;
+    height: auto;
+}
+  
+.nav-link {
+    margin-top: 10px;
+    font-size: 30px;
+    color: white !important;
+    margin-right: 80px;
+}
+  
+.navbar-menu {
+    display: flex;
+    justify-content: flex-end;
+}

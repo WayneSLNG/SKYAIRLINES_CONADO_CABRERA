@@ -1,0 +1,10 @@
+.modal-content {
+    text-align: left;
+    max-width: 1000px !important;
+    width: 100% !important;
+}
+
+.custom-modal-content {
+    text-align: left;
+}
+

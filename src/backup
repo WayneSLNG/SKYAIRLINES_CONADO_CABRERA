@@ -1,0 +1,173 @@
+import React, { useState } from 'react';
+import './search.css'; // Import CSS file for modal styles
+import FlightSummary from './flightSummary'; // Import FlightSummary component
+
+const locations = ['Manila', 'Cebu', 'Clark'];
+
+function Search() {
+    const [origin, setOrigin] = useState('');
+    const [destination, setDestination] = useState('');
+    const [tripType, setTripType] = useState('roundtrip');
+    const [adultCount, setAdultCount] = useState(1);
+    const [childCount, setChildCount] = useState(0);
+    const [infantCount, setInfantCount] = useState(0);
+    const [departureDate, setDepartureDate] = useState('');
+    const [returnDate, setReturnDate] = useState('');
+    const [modalOpen, setModalOpen] = useState(false);
+    const [modalMessage, setModalMessage] = useState('');
+    const [searchInitiated, setSearchInitiated] = useState(false); // State to track if search initiated
+
+    const handleSearch = () => {
+        if (origin.trim() === '' || destination.trim() === '') {
+            setModalMessage('Please select origin and destination.');
+            setModalOpen(true);
+            return;
+        }
+
+        if (origin === destination) {
+            setModalMessage('Origin and destination cannot be the same.');
+            setModalOpen(true);
+            return;
+        }
+
+        if (departureDate === '' || (tripType === 'roundtrip' && returnDate === '')) {
+            setModalMessage('Please select both departure and return dates.');
+            setModalOpen(true);
+            return;
+        }
+
+        const today = new Date();
+        const departureDateObj = new Date(departureDate);
+        if (departureDateObj < today) {
+            setModalMessage('Departure date cannot be in the past.');
+            setModalOpen(true);
+            return;
+        }
+
+        if (tripType === 'roundtrip') {
+            const returnDateObj = new Date(returnDate);
+            if (returnDateObj < departureDateObj) {
+                setModalMessage('Return date cannot be earlier than departure date.');
+                setModalOpen(true);
+                return;
+            }
+
+            const maxDateRange = new Date();
+            maxDateRange.setDate(maxDateRange.getDate() + 365); // Limit to one year from today
+            if (returnDateObj > maxDateRange) {
+                setModalMessage('Return date cannot be more than one year from today.');
+                setModalOpen(true);
+                return;
+            }
+        }
+
+        if (adultCount === 0) {
+            setModalMessage('Please select at least one adult passenger.');
+            setModalOpen(true);
+            return;
+        }
+
+        if (adultCount + childCount + infantCount > 9) {
+            setModalMessage('Total passengers cannot exceed 9.');
+            setModalOpen(true);
+            return;
+        }
+
+        // If all validations pass, set searchInitiated to true
+        setSearchInitiated(true);
+    };
+
+    const closeModal = () => {
+        setModalOpen(false);
+        setModalMessage('');
+    };
+
+    return (
+        <div>
+            {!searchInitiated ? ( // Render search form if search not initiated
+                <>
+                    <label>
+                        Origin:
+                        <select value={origin} onChange={(e) => setOrigin(e.target.value)}>
+                            <option value="">Select Origin</option>
+                            {locations.map((location, index) => (
+                                <option key={index} value={location}>{location}</option>
+                            ))}
+                        </select>
+                    </label>
+
+                    <label>
+                        Destination:
+                        <select value={destination} onChange={(e) => setDestination(e.target.value)}>
+                            <option value="">Select Destination</option>
+                            {locations.map((location, index) => (
+                                <option key={index} value={location}>{location}</option>
+                            ))}
+                        </select>
+                    </label>
+
+                    <label>
+                        Trip Type:
+                        <select value={tripType} onChange={(e) => setTripType(e.target.value)}>
+                            <option value="roundtrip">Round Trip</option>
+                            <option value="oneway">One Way</option>
+                        </select>
+                    </label>
+
+                    <label>
+                        Departure Date:
+                        <input type="date" value={departureDate} onChange={(e) => setDepartureDate(e.target.value)} />
+                    </label>
+
+                    {tripType === 'roundtrip' && (
+                        <label>
+                            Return Date:
+                            <input type="date" value={returnDate} onChange={(e) => setReturnDate(e.target.value)} />
+                        </label>
+                    )}
+
+                    <label>
+                        Adults:
+                        <input type="number" value={adultCount} onChange={(e) => setAdultCount(parseInt(e.target.value))} />
+                    </label>
+
+                    <label>
+                        Children:
+                        <input type="number" value={childCount} onChange={(e) => setChildCount(parseInt(e.target.value))} />
+                    </label>
+
+                    <label>
+                        Infants:
+                        <input type="number" value={infantCount} onChange={(e) => setInfantCount(parseInt(e.target.value))} />
+                    </label>
+
+                    <button onClick={handleSearch}>Search Flights</button>
+
+                    {modalOpen && (
+                        <div className="modal">
+                            <div className="modal-content">
+                                <span className="close" onClick={closeModal}>&times;</span>
+                                <p>{modalMessage}</p>
+                                <button onClick={closeModal}>Okay</button>
+                            </div>
+                        </div>
+                    )}
+                </>
+            ) : (
+                // Render FlightSummary if search initiated
+                <FlightSummary
+                    origin={origin}
+                    destination={destination}
+                    tripType={tripType}
+                    departureDate={departureDate}
+                    returnDate={returnDate}
+                    adultCount={adultCount}
+                    childCount={childCount}
+                    infantCount={infantCount}
+                />
+            )}
+        </div>
+    );
+}
+
+export default Search;
