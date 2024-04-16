@@ -94,6 +94,10 @@ function FlightSummary({
     setRedirectToPassengerForm(true);
   };
 
+  const handleGoBack = () => {
+    window.location.href = "/";
+  };
+
   if (redirectToPassengerForm) {
     return (
       <PassengerForm
@@ -113,9 +117,9 @@ function FlightSummary({
 
   return (
     <>
-      <div className="card">
+      <div className="card" style={{ fontFamily: "'Oswald', sans-serif" }}>
         <div className="card-body">
-          <h4 className="card-title mb-3">Flight Summary</h4>
+          <h4 className="card-title mb-3 text-dark">Flight Summary</h4>
           <div className="row mb-2">
             <p className="col">
               <strong>Trip Type:</strong> {tripType}
@@ -124,26 +128,26 @@ function FlightSummary({
 
           <div className="row mb-2">
             <div className="col">
-              <label className="fw-bolder">Origin:</label>
+              <label className="fw-bolder">Origin</label>
               <p className="col">{origin}</p>
             </div>
 
             <div className="col">
-              <label className="fw-bolder">Destination:</label>
+              <label className="fw-bolder">Destination</label>
               <p className="col">{destination}</p>
             </div>
           </div>
 
           <div className="row mb-2">
             <div className="col">
-              <label className="fw-bolder">Departure Date:</label>
+              <label className="fw-bolder">Departure Date</label>
               <p className="col">{departureDate}</p>
             </div>
 
             <div className="col">
               {tripType === "roundtrip" && (
                 <>
-                  <label className="fw-bolder">Return Date:</label>
+                  <label className="fw-bolder">Return Date</label>
                   <p className="col">{returnDate}</p>
                 </>
               )}
@@ -152,30 +156,33 @@ function FlightSummary({
 
           <div className="row">
             <div className="col">
-              <label className="fw-bolder">Adults:</label>
+              <label className="fw-bolder">Adults</label>
               <p className="col">{adultCount}</p>
             </div>
 
             <div className="col">
-              <label className="fw-bolder">Children:</label>
+              <label className="fw-bolder">Children</label>
               <p className="col">{childCount}</p>
             </div>
 
             <div className="col">
-              <label className="fw-bolder">Infants:</label>
+              <label className="fw-bolder">Infants</label>
               <p className="col">{infantCount}</p>
             </div>
           </div>
         </div>
         <ul className="list-group list-group-flush">
           <li className="list-group-item mb-2">
-            <label className="fw-bolder" htmlFor="promoCode">Promo Code:</label>
+            <label className="fw-bolder" htmlFor="promoCode">
+              Promo Code
+            </label>
             <input
               type="text"
               id="promoCode"
               className="form-control"
               value={promoCode}
               onChange={(e) => setPromoCode(e.target.value)}
+              placeholder="Enter promo code"
             />
           </li>
           <li className="list-group-item mb-2 ">
@@ -184,8 +191,12 @@ function FlightSummary({
             </div>
 
             <div className="col d-flex justify-content-end">
-              <button className="btn btn-primary mt-2" onClick={handleProceed}>
-                Proceed
+              <button className="btn btn-primary me-2" onClick={handleGoBack}>
+                <i className="bi bi-arrow-left"></i> Back
+              </button>
+
+              <button className="btn btn-primary" onClick={handleProceed}>
+                Proceed <i className="bi bi-check2"></i>
               </button>
             </div>
           </li>

@@ -27,7 +27,7 @@ const Modal: React.FC<ModalProps> = ({ isOpen, onClose }) => {
     }, [isOpen, searchComplete, onClose]);
 
     return (
-        <div>
+        <div style={{ fontFamily: "'Oswald', sans-serif" }}>
             {isOpen && (
                 <div className="modal border-light">
                     <div className="modal-content">

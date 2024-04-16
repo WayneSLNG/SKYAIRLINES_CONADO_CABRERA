@@ -15,10 +15,9 @@ function Navbar() {
         </button>
         <div className="collapse navbar-collapse justify-content-end" id="navbarNav">
           <ul className='navbar-nav'>
-            <li className="nav-item"><Link to="/" className="nav-link">Home</Link></li> 
-            <li className="nav-item"><Link to="/about" className="nav-link">About</Link></li> 
-            <li className="nav-item"><Link to="/signup" className="nav-link">Sign Up</Link></li> 
-            <li className="nav-item"><Link to="/signin" className="nav-link">Sign In</Link></li>
+            <li className="nav-item"><Link to="/" className="nav-link" style={{ fontFamily: "'Oswald', sans-serif" }}>Home</Link></li> 
+            <li className="nav-item"><Link to="/about" className="nav-link" style={{ fontFamily: "'Oswald', sans-serif" }}>About</Link></li> 
+            <li className="nav-item"><Link to="/signup" className="nav-link" style={{ fontFamily: "'Oswald', sans-serif" }}>Sign Up</Link></li> 
           </ul>
         </div>
       </div>

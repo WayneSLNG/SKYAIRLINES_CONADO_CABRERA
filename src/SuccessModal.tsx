@@ -5,7 +5,7 @@ const SuccessModal: React.FC<{ visible: boolean; onClose: () => void }> = ({ vis
     if (visible) {
       const timer = setTimeout(() => {
         onClose();
-      }, 2000); // Hide modal after 2 seconds
+      }, 2000);
       return () => clearTimeout(timer);
     }
   }, [visible, onClose]);
@@ -13,7 +13,7 @@ const SuccessModal: React.FC<{ visible: boolean; onClose: () => void }> = ({ vis
   return (
     <div className={`modal ${visible ? 'show' : ''}`} style={{ display: visible ? 'block' : 'none' }}>
       <div className="modal-dialog">
-        <div className="modal-content" style={{ backgroundColor: '#fff' }}> {/* Add background color style */}
+        <div className="modal-content" style={{ backgroundColor: '#fff' }}>
           <div className="modal-body text-center">
             <svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="#00cc00" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
               <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14" />

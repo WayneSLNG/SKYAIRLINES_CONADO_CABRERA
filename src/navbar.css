@@ -1,28 +1,33 @@
 .navbar {
-    background-color: transparent;
+    background-color: #002D62;
     position: relative;
+
 }
   
 .navbar-brand {
     padding: 0;
     position: absolute;
     left: 20px;
-    top: 80%;
+    top: 65%;
     transform: translateY(-50%);
 }
   
 .logo-img {
-    width: 200px;
+    width: 180px;
     height: auto;
 }
   
 .nav-link {
     margin-top: 10px;
-    font-size: 30px;
+    font-size: 40px;
     color: white !important;
-    margin-right: 80px;
 }
-  
+
+.navbar-nav > .nav-item:nth-child(-n+3) .nav-link {
+    margin-right: 130px;
+}
+
+
 .navbar-menu {
     display: flex;
     justify-content: flex-end;

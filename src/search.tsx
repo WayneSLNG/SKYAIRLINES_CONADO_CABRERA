@@ -91,12 +91,12 @@ function Search() {
             <Modal isOpen={showAnimation} onClose={() => setShowAnimation(false)} />
 
             {!searchInitiated ? (
-                <div className="card">
+                <div className="card" style={{ fontFamily: "'Oswald', sans-serif" }}>
                     <div className="card-body">
-                        <h4 className="card-title mb-3">Search Flight</h4>
+                        <h4 className="card-title mb-3 text-dark">Search Flight</h4>
                         <div className="row mb-3">
                             <div className="col-md-6">
-                                <label htmlFor="tripType">Trip Type:</label>
+                                <label htmlFor="tripType">Trip Type</label>
                                 <select id="tripType" className="form-control" value={tripType} onChange={(e) => setTripType(e.target.value)}>
                                     <option value="roundtrip">Round Trip</option>
                                     <option value="oneway">One Way</option>
@@ -106,7 +106,7 @@ function Search() {
 
                         <div className="row mb-3">
                             <div className="col">
-                                <label htmlFor="origin">Origin:</label>
+                                <label htmlFor="origin">Origin</label>
                                 <select id="origin" className="form-control" value={origin} onChange={(e) => setOrigin(e.target.value)}>
                                     <option value="">Select Origin</option>
                                     {locations.map((location, index) => (
@@ -115,7 +115,7 @@ function Search() {
                                 </select>
                             </div>
                             <div className="col">
-                                <label htmlFor="destination">Destination:</label>
+                                <label htmlFor="destination">Destination</label>
                                 <select id="destination" className="form-control" value={destination} onChange={(e) => setDestination(e.target.value)}>
                                     <option value="">Select Destination</option>
                                     {locations.map((location, index) => (
@@ -127,12 +127,12 @@ function Search() {
 
                         <div className="row mb-3">
                             <div className="col">
-                                <label htmlFor="departureDate">Departure Date:</label>
+                                <label htmlFor="departureDate">Departure Date</label>
                                 <input id="departureDate" type="date" className="form-control" value={departureDate} onChange={(e) => setDepartureDate(e.target.value)} />
                             </div>
                             {tripType === 'roundtrip' && (
                                 <div className="col">
-                                    <label htmlFor="returnDate">Return Date:</label>
+                                    <label htmlFor="returnDate">Return Date</label>
                                     <input id="returnDate" type="date" className="form-control" value={returnDate} onChange={(e) => setReturnDate(e.target.value)} />
                                 </div>
                             )}
@@ -144,18 +144,18 @@ function Search() {
                                 <input id="adultCount" type="number" className="form-control" value={adultCount} onChange={(e) => setAdultCount(parseInt(e.target.value))} />
                             </div>
                             <div className="col">
-                                <label htmlFor="childCount">Children:</label>
+                                <label htmlFor="childCount">Children</label>
                                 <input id="childCount" type="number" className="form-control" value={childCount} onChange={(e) => setChildCount(parseInt(e.target.value))} />
                             </div>
                             <div className="col">
-                                <label htmlFor="infantCount">Infants:</label>
+                                <label htmlFor="infantCount">Infants</label>
                                 <input id="infantCount" type="number" className="form-control" value={infantCount} onChange={(e) => setInfantCount(parseInt(e.target.value))} />
                             </div>
                         </div>
 
                         <div className="row mt-4">
                             <div className="col d-flex justify-content-end">
-                                <button className="btn btn-primary" onClick={handleSearch}>Search Flights</button>
+                                <button className="btn btn-primary" onClick={handleSearch}>Search Flights <i className="bi bi-search"></i></button>
                             </div>
                         </div>
                     </div>
@@ -166,7 +166,6 @@ function Search() {
                                 <p className='fs-5 text-center'>{modalMessage}</p>
                                 <div className='row'>
                                     <div className='col d-flex justify-content-end'>
-                                    <button className="btn btn-primary me-2" onClick={closeModal}>Back</button>
                                     <button className="btn btn-primary" onClick={closeModal}>Okay</button>
                                     </div>
                                 </div>
