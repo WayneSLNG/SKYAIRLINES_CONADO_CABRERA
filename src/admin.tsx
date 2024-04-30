@@ -82,10 +82,10 @@ const Admin: React.FC = () => {
 
   const addPromoCode = (event: React.FormEvent): void => {
     event.preventDefault();
-    // Ensure the promo code is unique before adding
+   
     if (!promos.some((promo) => promo.code === promoCode.code)) {
       setPromos([...promos, promoCode]);
-      // Clear input fields after adding
+     
       setPromoCode({ code: "", discount: 0 });
     } else {
       alert("Promo code already exists.");
