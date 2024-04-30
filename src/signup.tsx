@@ -87,22 +87,22 @@ const Authentication: React.FC = () => {
 
               <div className='row mb-3'>
                 <div className="col">
-                  <label className="form-label">First Name:</label>
+                  <label className="form-label">First Name</label>
                   <input type="text" className="form-control" value={firstName} onChange={(e) => setFirstName(e.target.value)} required/>
                 </div>
                 <div className="col">
-                  <label className="form-label">Middle Name:</label>
+                  <label className="form-label">Middle Name</label>
                   <input type="text" className="form-control" value={middleName} onChange={(e) => setMiddleName(e.target.value)}/>
                 </div>
                 <div className="col">
-                  <label className="form-label">Last Name:</label>
+                  <label className="form-label">Last Name</label>
                   <input type="text" className="form-control" value={lastName} onChange={(e) => setLastName(e.target.value)} required/>
                 </div>
               </div>
 
               <div className='row mb-3'>
                 <div className="col">
-                  <label className="form-label">Birthday:</label>
+                  <label className="form-label">Birthday</label>
                   <input type="date" className="form-control" value={birthday} onChange={(e) => setBirthday(e.target.value)} required/>
                 </div>
 
@@ -118,17 +118,17 @@ const Authentication: React.FC = () => {
               </div>
 
               <div className="mb-3">
-                <label className="form-label">Email:</label>
+                <label className="form-label">Email</label>
                 <input type="email" className="form-control" value={email} onChange={(e) => setEmail(e.target.value)} required/>
               </div>
 
               <div className="mb-3">
-                <label className="form-label">Username:</label>
+                <label className="form-label">Username</label>
                 <input type="text" className="form-control" value={username} onChange={(e) => setUsername(e.target.value)} required/>
               </div>
 
               <div className="mb-3">
-                <label className="form-label">Password:</label>
+                <label className="form-label">Password</label>
                 <input type="password" className="form-control" value={password} onChange={(e) => setPassword(e.target.value)} required/>
               </div>
 
@@ -151,11 +151,11 @@ const Authentication: React.FC = () => {
               <h2>Sign In</h2>
               <form onSubmit={handleSignIn}>
                 <div className="mb-3">
-                  <label className="form-label">Username:</label>
+                  <label className="form-label">Username</label>
                   <input type="text" className="form-control" value={signInUsername} onChange={(e) => setSignInUsername(e.target.value)} required/>
                 </div>
                 <div className="mb-3">
-                  <label className="form-label">Password:</label>
+                  <label className="form-label">Password</label>
                   <input type="password" className="form-control" value={signInPassword} onChange={(e) => setSignInPassword(e.target.value)} required/>
                 </div>
                 <button type="submit" className="btn btn-primary">Sign In</button>
@@ -181,7 +181,7 @@ const Authentication: React.FC = () => {
         )}
 
         {isSignedIn && signInSuccess && (
-          <div className="modal" tabIndex={-1} role="dialog" style={{ display: 'block' }}>
+          <div className="welcome" tabIndex={-1} role="dialog" style={{ display: 'block' }}>
             <div className="modal-dialog" role="document">
               <div className="modal-content">
                 <div className="modal-header">
@@ -193,7 +193,7 @@ const Authentication: React.FC = () => {
                     <div className="checkmark__circle"></div>
                     <div className="checkmark__check"></div>
                   </div>
-                  <p>Welcome, {signUpUsername}!</p>
+                  <p>Welcome   {signUpUsername}!</p>
                 </div>
               </div>
             </div>
@@ -201,15 +201,13 @@ const Authentication: React.FC = () => {
         )}
 
         {showModal && (
-          <div className="modal" tabIndex={-1} role="dialog" style={{ display: 'block' }}>
+          <div className="error" tabIndex={-1} role="dialog" style={{ display: 'block' }}>
             <div className="modal-dialog" role="document">
               <div className="modal-content">
                 <div className="modal-header">
-                  <h5 className="modal-title">Error!</h5>
-                  <button type="button" className="btn-close" onClick={() => setShowModal(false)} aria-label="Close"></button>
+                  <h5 className="modal-title">Invalid Details!   </h5>
                 </div>
                 <div className="modal-body">
-                  <p>Try again</p>
                 </div>
                 <div className="modal-footer">
                   <button type="button" className="btn btn-primary" onClick={handleTryAgain}>Try Again</button>
